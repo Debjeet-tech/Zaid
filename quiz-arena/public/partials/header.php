@@ -9,8 +9,8 @@ $user = $_SESSION['user'] ?? null;
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Quiz Arena</title>
-  <link rel="stylesheet" href="/quiz-arena/public/assets/css/style.css" />
-  <script defer src="/quiz-arena/public/assets/js/app.js"></script>
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <script defer src="assets/js/app.js"></script>
 </head>
 <body>
   <nav class="navbar">
@@ -18,13 +18,13 @@ $user = $_SESSION['user'] ?? null;
     <div class="nav-actions">
       <?php if ($user): ?>
         <span class="hello">Hi, <?php echo htmlspecialchars($user['username']); ?>!</span>
-        <a class="btn" href="/quiz-arena/public/dashboard.php">Dashboard</a>
-        <a class="btn" href="/quiz-arena/public/leaderboard.php">Leaderboard</a>
-        <form class="inline" method="post" action="/quiz-arena/api/logout.php">
+        <a class="btn" href="dashboard.php">Dashboard</a>
+        <a class="btn" href="leaderboard.php">Leaderboard</a>
+        <form class="inline" method="post" action="../api/logout.php">
           <button class="btn danger" type="submit">Logout</button>
         </form>
       <?php else: ?>
-        <a class="btn" href="/quiz-arena/public/index.php#auth">Login</a>
+        <a class="btn" href="index.php#auth">Login</a>
       <?php endif; ?>
     </div>
   </nav>

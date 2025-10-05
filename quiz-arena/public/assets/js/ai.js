@@ -33,7 +33,7 @@ async function selectAIAnswer(state, letter){
   if (state.index < state.questions.length){
     renderAIQuestion(state);
   } else {
-    aiGameEl.innerHTML = `<div class="panel"><h3>Done!</h3><p>Your score: ${state.score}/${state.questions.length}</p><a class="btn" href="/quiz-arena/public/dashboard.php">Back to Dashboard</a></div>`;
+    aiGameEl.innerHTML = `<div class="panel"><h3>Done!</h3><p>Your score: ${state.score}/${state.questions.length}</p><a class="btn" href="dashboard.php">Back to Dashboard</a></div>`;
   }
 }
 
@@ -42,7 +42,7 @@ aiSetup?.addEventListener('submit', async (e)=>{
   const formData = new FormData(aiSetup);
   const category = formData.get('category');
   const difficulty = formData.get('difficulty');
-  const res = await fetch(`/quiz-arena/api/get_questions.php?category=${category}&difficulty=${difficulty}&limit=10`);
+  const res = await fetch(`../api/get_questions.php?category=${category}&difficulty=${difficulty}&limit=10`);
   const out = await res.json();
   if (!out.ok){ alert(out.error || 'Failed to load questions'); return; }
   aiGameEl.classList.remove('hidden');

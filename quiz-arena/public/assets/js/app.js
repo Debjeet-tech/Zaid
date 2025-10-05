@@ -16,16 +16,16 @@ window.addEventListener('DOMContentLoaded', () => {
   if (registerForm){
     registerForm.addEventListener('submit', async (e)=>{
       e.preventDefault();
-      const out = await postForm('/quiz-arena/api/register.php', registerForm);
-      if(out.ok){ window.location.href = '/quiz-arena/public/dashboard.php'; }
+      const out = await postForm('../api/register.php', registerForm);
+      if(out.ok){ window.location.href = 'dashboard.php'; }
       else { alert(out.error || 'Registration failed'); }
     })
   }
   if (loginForm){
     loginForm.addEventListener('submit', async (e)=>{
       e.preventDefault();
-      const out = await postForm('/quiz-arena/api/login.php', loginForm);
-      if(out.ok){ window.location.href = '/quiz-arena/public/dashboard.php'; }
+      const out = await postForm('../api/login.php', loginForm);
+      if(out.ok){ window.location.href = 'dashboard.php'; }
       else { alert(out.error || 'Login failed'); }
     })
   }

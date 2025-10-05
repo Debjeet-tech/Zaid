@@ -1,5 +1,5 @@
 async function loadLeaderboard(){
-  const res = await fetch('/quiz-arena/api/leaderboard.php');
+  const res = await fetch('../api/leaderboard.php');
   const out = await res.json();
   const root = document.getElementById('leaderboard');
   if (!out.ok){ root.textContent = out.error || 'Failed to load leaderboard'; return; }

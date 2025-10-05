@@ -28,7 +28,7 @@ function renderArena(){
 
 async function submitAnswer(letter){
   const elapsed = Date.now() - startTime;
-  const out = await postJSON('/quiz-arena/api/submit_answer.php', {
+  const out = await postJSON('../api/submit_answer.php', {
     match_id: currentMatchId,
     question_id: currentQuestion.id,
     answer: letter,
@@ -39,7 +39,7 @@ async function submitAnswer(letter){
 }
 
 async function pollMatch(){
-  const res = await fetch(`/quiz-arena/api/match_status.php?match_id=${currentMatchId}`);
+  const res = await fetch(`../api/match_status.php?match_id=${currentMatchId}`);
   const out = await res.json();
   if (!out.ok){
     clearInterval(pollId);
@@ -49,7 +49,7 @@ async function pollMatch(){
   matchStatus.textContent = out.status_text;
   if (out.completed){
     clearInterval(pollId);
-    arenaEl.innerHTML = `<div class="panel"><h3>${out.winner_text}</h3><a class="btn" href="/quiz-arena/public/leaderboard.php">View Leaderboard</a></div>`;
+    arenaEl.innerHTML = `<div class="panel"><h3>${out.winner_text}</h3><a class="btn" href="leaderboard.php">View Leaderboard</a></div>`;
     return;
   }
   if (out.question){
@@ -68,7 +68,7 @@ queueForm?.addEventListener('submit', async (e)=>{
   const category = fd.get('category');
   const difficulty = fd.get('difficulty');
   matchStatus.textContent = 'Searching opponent...';
-  const out = await postForm('/quiz-arena/api/queue.php', queueForm);
+  const out = await postForm('../api/queue.php', queueForm);
   if (!out.ok){ matchStatus.textContent = out.error || 'Queue failed'; return; }
   currentMatchId = out.match_id;
   matchStatus.textContent = 'Matched! Preparing questions...';
